@@ -58,12 +58,22 @@ export default function Home() {
   const [status, setStatus] = useState("idle");
   const [portfolioOpen, setPortfolioOpen] = useState(false);
   const [selectedWork, setSelectedWork] = useState(null);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   useEffect(() => {
     fetch(`${apiUrl}/api/services`)
       .then((res) => (res.ok ? res.json() : Promise.reject(new Error("Service unavailable"))))
       .then((data) => setServices(data.services || fallbackServices))
       .catch(() => setServices(fallbackServices));
+  }, []);
+
+  useEffect(() => {
+    function closeMobileNavOnDesktop() {
+      if (window.innerWidth >= 768) setMobileNavOpen(false);
+    }
+
+    window.addEventListener("resize", closeMobileNavOnDesktop);
+    return () => window.removeEventListener("resize", closeMobileNavOnDesktop);
   }, []);
 
   const metrics = useMemo(
@@ -154,11 +164,32 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-3">
             <a href="#contact" className="nav-cta hidden md:inline-flex">Contact Us</a>
-            <button className="inline-flex h-10 items-center gap-2 rounded-md bg-white/8 px-4 text-sm font-semibold text-white transition hover:bg-white/12 md:hidden">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18M3 12h18M3 18h18" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <button
+              type="button"
+              className="menu-toggle inline-flex h-10 items-center gap-2 rounded-md bg-white/8 px-4 text-sm font-semibold text-white transition hover:bg-white/12 md:hidden"
+              aria-label="Toggle navigation menu"
+              aria-expanded={mobileNavOpen}
+              onClick={() => setMobileNavOpen((prev) => !prev)}
+            >
+              {mobileNavOpen ? (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6L18 18M18 6L6 18" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              ) : (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18M3 12h18M3 18h18" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              )}
             </button>
           </div>
         </nav>
+
+        {mobileNavOpen && (
+          <div className="mobile-nav-panel md:hidden">
+            <a href="#services" className="mobile-nav-link" onClick={() => setMobileNavOpen(false)}>Home</a>
+            <a href="/about" className="mobile-nav-link" onClick={() => setMobileNavOpen(false)}>About Us</a>
+            <a href="#services" className="mobile-nav-link" onClick={() => setMobileNavOpen(false)}>Services</a>
+            <a href="#portfolio" className="mobile-nav-link" onClick={() => setMobileNavOpen(false)}>Work</a>
+            <a href="#blog" className="mobile-nav-link" onClick={() => setMobileNavOpen(false)}>Blog</a>
+            <a href="#contact" className="nav-cta mobile-nav-cta" onClick={() => setMobileNavOpen(false)}>Contact Us</a>
+          </div>
+        )}
 
         <div className="mx-auto grid max-w-7xl items-center gap-10 pb-12 pt-14 lg:grid-cols-[1.05fr_0.95fr] lg:pt-20">
           <motion.div

@@ -84,6 +84,36 @@ nav a { color: rgba(255,255,255,0.86); text-decoration:none; }
 /* Logo tweak: make 'Media' appear smaller with a thin underline */
 .site-logo{ height:56px; width:auto; max-width:220px; object-fit:contain; display:block; }
 
+.mobile-nav-panel{
+  margin: 10px auto 0;
+  max-width: 380px;
+  border: 1px solid rgba(123,46,255,0.2);
+  background: linear-gradient(180deg, rgba(13, 16, 36, 0.96), rgba(8, 10, 24, 0.96));
+  box-shadow: 0 18px 60px rgba(2,6,23,0.55);
+  border-radius: 14px;
+  padding: 10px;
+  display: grid;
+  gap: 6px;
+}
+
+.mobile-nav-link{
+  display: block;
+  color: rgba(255,255,255,0.92);
+  text-decoration: none;
+  font-weight: 700;
+  padding: 10px 12px;
+  border-radius: 10px;
+}
+
+.mobile-nav-link:hover{
+  background: rgba(123,46,255,0.14);
+}
+
+.mobile-nav-cta{
+  justify-content: center;
+  margin-top: 4px;
+}
+
 /* Make CTA button match reference with pill shape and purple glow */
 .nav-cta{ padding:8px 14px; border-radius:10px; font-weight:800; background: linear-gradient(90deg,var(--primary-purple),#8b2eff 45%, var(--accent-orange)); box-shadow: 0 12px 42px rgba(123,46,255,0.22); }
 
@@ -158,6 +188,50 @@ nav a { color: rgba(255,255,255,0.86); text-decoration:none; }
   margin-top: 30px;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 1200px) {
+  .laptop-mock {
+    width: 460px;
+    right: -24px;
+    top: -10px;
+  }
+
+  .phone-mock {
+    max-width: 46vw;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main-nav {
+    gap: 16px;
+  }
+
+  .nav-center {
+    position: static;
+    transform: none;
+    gap: 16px;
+  }
+
+  .laptop-mock {
+    display: none;
+  }
+
+  .phone-mock {
+    width: 300px;
+    max-width: 64vw;
+    margin: 0 auto;
+  }
+
+  .features-row {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .feature-pill {
+    flex: 1 1 220px;
+    justify-content: flex-start;
+  }
 }
 
 .feature-pill {
@@ -389,9 +463,50 @@ nav a { color: rgba(255,255,255,0.86); text-decoration:none; }
 }
 
 @media (max-width: 768px) {
-  .phone-mock { display: none; }
-  .features-row { flex-direction: column; gap: 10px; }
+  .main-nav {
+    position: relative;
+    align-items: center;
+  }
+
+  .phone-mock {
+    width: 260px;
+    max-width: 82vw;
+  }
+
+  .features-row {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .feature-pill {
+    width: 100%;
+  }
+
   .site-logo { height:46px; max-width:170px; }
+
+  .submit-btn {
+    width: 100%;
+  }
+
+  .contact-cta-badge {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: clamp(1.9rem, 9vw, 2.5rem);
+  }
+
+  .section-label {
+    font-size: 10px;
+  }
+
+  .site-logo {
+    height: 40px;
+    max-width: 146px;
+  }
 }
 
 .glass {
