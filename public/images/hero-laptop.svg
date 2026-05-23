@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520">
+  <rect width="100%" height="100%" rx="20" fill="url(#bg)" />
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7B2EFF" />
+      <stop offset="1" stop-color="#FF7A18" />
+    </linearGradient>
+  </defs>
+  <rect x="18" y="18" width="764" height="364" rx="12" fill="#070B1A" />
+  <rect x="34" y="40" width="730" height="180" rx="8" fill="rgba(124,58,237,0.12)" />
+  <circle cx="660" cy="120" r="44" fill="#ff7a18" opacity="0.14" />
+  <text x="48" y="120" fill="#fff" font-size="28" font-family="Poppins, sans-serif" font-weight="700">AI Growth Dashboard — Demo</text>
+  <rect x="160" y="240" width="480" height="8" rx="4" fill="#7B2EFF" opacity="0.9" />
+  <rect x="160" y="262" width="320" height="8" rx="4" fill="#FF7A18" opacity="0.9" />
+  <rect x="160" y="284" width="420" height="8" rx="4" fill="#7B2EFF" opacity="0.6" />
+  <rect x="200" y="330" width="400" height="10" rx="6" fill="#111827" opacity="0.5" />
+</svg>
